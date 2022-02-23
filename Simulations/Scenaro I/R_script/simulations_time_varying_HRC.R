@@ -17,11 +17,11 @@ if(job_id >=1 & job_id <=12){
   print(paste0('n_by_job_id ',n_by_job_id))
   print(paste0('tau_by_job_id ',tau_by_job_id))
 }else{
-  stop(' Error job id not in 1-9')
+  stop(' Error job id not in 1-12')
 }
 
 
-rate.c.df<-data.frame(tau=c(0.1,0.3,0.5,0.7),rate.C=c(0.34,0.27,0.19,0.099))
+rate.c.df<-data.frame(tau=c(0.1,0.3,0.5,0.7),rate.C=c(0.18,0.175,0.175,0.175))
 rate.C=rate.c.df$rate.C[match(tau_by_job_id ,rate.c.df$tau)]
 
 #########################################################################################################################
@@ -35,13 +35,10 @@ library(tidyr)
 library(boot)
 ###########################################################################################################################
 #all pathes
-#path.functions="/a/home/cc/stud_math/axelrod1/simulations_on_cluster/without_confounder/functions"
-# path.functions="/a/home/cc/stud_math/axelrod1/simulations_on_cluster/with_confounder/functions"
-# path.results="/a/home/cc/stud_math/axelrod1/simulations_on_cluster/with_confounder/SimResults/scenario2_linear_hr"
-path.functions2="/a/home/cc/stud_math/axelrod1/simulations_on_cluster/New_only_two_scenarios/functions2"
-path.results="/a/home/cc/stud_math/axelrod1/simulations_on_cluster/New_only_two_scenarios/without_confounder/SimResults/scenario2_const_HRC"
+path.functions2="please specify the function path"
+path.results="please specify the results path"
 
-#path.results="/a/home/cc/stud_math/axelrod1/simulations_on_cluster/without_confounder/SimResults/scenario2_log_hr"
+
 source.all(path.functions2)
 
 
@@ -71,16 +68,14 @@ alpha<-1
 beta.ax=log(1)
 kern="e"
 beta.a<-log(0.5)
-
-# run the simulation all over the parametrs
+# run the simulation all over the parametrs===
 print(paste0('confounder ',confounder))
 
 
 
 
 start_time <- Sys.time()
-const.HRC.saving.boot(lamdas=lamdas,
-                        alpha=alpha,
+time.varying.HRC.saving.boot(lamdas=lamdas,alpha=alpha,
                        gammas=gammas,
                        n =n,
                        theta=theta,
@@ -94,10 +89,11 @@ const.HRC.saving.boot(lamdas=lamdas,
                        ncpus=ncpus,
                        kern=kern,
                        end.time=NULL,
-                      min.time=NA,
-                      b.cor="b",n.est.grid=n.est.grid)
+                       min.time=NA,
+                       b.cor=b.cor,n.est.grid=n.est.grid
+)
   
-
+  
   end_time <- Sys.time()
   print(end_time - start_time)
 

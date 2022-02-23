@@ -33,21 +33,18 @@ library(tidyr)
 library(boot)
 ###########################################################################################################################
 #all pathes
-#path.functions="/a/home/cc/stud_math/axelrod1/simulations_on_cluster/without_confounder/functions"
-# path.functions="/a/home/cc/stud_math/axelrod1/simulations_on_cluster/with_confounder/functions"
-# path.results="/a/home/cc/stud_math/axelrod1/simulations_on_cluster/with_confounder/SimResults/scenario2_linear_hr"
-path.functions2="/a/home/cc/stud_math/axelrod1/conditional_hazard_of_Cox/functions"
+path.functions2="please specify the function path"
+source.all(path.functions2)
+
 file.name<-paste("tau_",tau_by_job_id,
                  "_beta.x_",beta.x_by_job_id,
                  "_cp_",cen.per_by_job_id,
                  "_n_",n_by_job_id ,sep = "")
-dir.create(file.path("/a/home/cc/stud_math/axelrod1/conditional_hazard_of_Cox/results/",
+dir.create(file.path("/please specify the results path,
                                   paste(file.name)), showWarnings = FALSE)
-path.results=paste("/a/home/cc/stud_math/axelrod1/conditional_hazard_of_Cox/results/",file.name,sep="")
+path.results=paste("resultst path",file.name,sep="")
 #results.specific=paste("tau_",tau_by_job_id,'_beta_x_',beta.x_by_job_id,"_cen_",cen.per_by_job_id,sep = "")
 
-#path.results="/a/home/cc/stud_math/axelrod1/simulations_on_cluster/without_confounder/SimResults/scenario2_log_hr"
-source.all(path.functions2)
 
 #finde the q 
 
