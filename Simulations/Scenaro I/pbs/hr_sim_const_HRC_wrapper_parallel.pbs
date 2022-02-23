@@ -1,0 +1,10 @@
+#!/bin/bash -l
+#PBS -N const_ncon
+#PBS -v PBS_O_SHELL=bash,PBS_ENVIRONMENT=PBS_BATCH
+#PBS -r n
+#PBS -q power-danielnev
+#PBS -e /a/home/cc/stud_math/axelrod1/simulations_on_cluster/New_only_two_scenarios/without_confounder/errors
+#PBS -o /a/home/cc/stud_math/axelrod1/simulations_on_cluster/New_only_two_scenarios/without_confounder/logs
+#PBS -l mem=80gb,vmem=100gb,pvmem=80gb,pmem=80gb,nodes=1:ppn=10
+module load R/4.1.0
+Rscript /a/home/cc/stud_math/axelrod1/simulations_on_cluster/New_only_two_scenarios/without_confounder/R_script/simulations_const_HRC_R1000.R $j_id
